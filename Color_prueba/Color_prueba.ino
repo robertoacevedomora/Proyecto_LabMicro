@@ -24,6 +24,19 @@ void setup() {
 
 void loop() {
 
+ // check if a proximity reading is available
+  if (APDS.proximityAvailable()) {
+    // read the proximity
+    // - 0   => close
+    // - 255 => far
+    // - -1  => error
+    int proximity = APDS.readProximity();
+
+    // print value to the Serial Monitor
+    //Serial.println(proximity);
+  }
+
+
   // check if a color reading is available
   while (! APDS.colorAvailable()) {
     delay(5);
@@ -60,13 +73,16 @@ void loop() {
 
 
   // print the values
-  Serial.print("Red light = ");
-  Serial.println(r);
-  Serial.print("Green light = ");
-  Serial.println(g);
-  Serial.print("Blue light = ");
+  //Serial.print("Red light = ");
+  Serial.print('\t');
+  Serial.print(r);
+ // Serial.print("Green light = ");
+  Serial.print('\t');
+  Serial.print(g);
+ // Serial.print("Blue light = ");
+  Serial.print('\t');
   Serial.println(b);
-  Serial.println();
+  //Serial.println();
 
   // wait a bit before reading again
   delay(500);
