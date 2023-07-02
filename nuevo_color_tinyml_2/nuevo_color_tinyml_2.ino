@@ -26,7 +26,7 @@
 #include <tensorflow/lite/schema/schema_generated.h>
 //#include <tensorflow/lite/version.h>
 #include <Arduino_APDS9960.h>
-#include "model_prueba.h"
+#include "azul.h"
 
 // global variables used for TensorFlow Lite (Micro)
 tflite::MicroErrorReporter tflErrorReporter;
@@ -96,6 +96,7 @@ void setup() {
 }
 
 
+
 void loop() {
   int r, g, b, p, c;
   float sum;
@@ -135,6 +136,8 @@ void loop() {
       Serial.print(int(tflOutputTensor->data.f[i] * 100));
       Serial.print("%\n");
     }
+    //Lee el sensor de proximidad
+    Serial.print(p);
     Serial.println();
 
     // Wait for the object to be moved away

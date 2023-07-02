@@ -11,7 +11,7 @@ ser = serial.Serial(port = puerto,baudrate=9600,parity=serial.PARITY_NONE,stopbi
 #ser = serial.Serial(port = '/dev/pts/3',baudrate=9600,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS) 
 current_directory = os.getcwd()
 
-csv_path = os.path.join(current_directory, "apple.csv")
+csv_path = os.path.join(current_directory, "blanco.csv")
 
 with open(csv_path, mode ='w') as csv_file:
   writer = csv.writer(csv_file)
@@ -22,7 +22,7 @@ with open(csv_path, mode ='w') as csv_file:
   cnt = 0
   while True:
     line = ser.readline().decode().strip()
-    data = line.split('\t')
+    data = line.split(',')
     r = float(data[0])
     g = float(data[1])
     b = float(data[2])
