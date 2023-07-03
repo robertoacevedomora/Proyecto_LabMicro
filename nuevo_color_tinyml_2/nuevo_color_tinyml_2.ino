@@ -19,6 +19,7 @@
 
 // Arduino_TensorFlowLite - Version: 0.alpha.precompiled
 #include <TensorFlowLite.h>
+#include <Arduino_LPS22HB.h>
 
 #include <tensorflow/lite/micro/all_ops_resolver.h>
 #include <tensorflow/lite/micro/tflite_bridge/micro_error_reporter.h>
@@ -26,7 +27,7 @@
 #include <tensorflow/lite/schema/schema_generated.h>
 //#include <tensorflow/lite/version.h>
 #include <Arduino_APDS9960.h>
-#include "azul.h"
+#include "model_banano.h"
 
 // global variables used for TensorFlow Lite (Micro)
 tflite::MicroErrorReporter tflErrorReporter;
@@ -48,9 +49,12 @@ byte tensorArena[tensorArenaSize];
 
 // array to map gesture index to a name
 const char* CLASSES[] = {
-  "Apple", // u8"\U0001F34E", // Apple
-  "Banana", // u8"\U0001F34C", // Banana
-  "Orange" // u8"\U0001F34A"  // Orange
+ // "Apple", // u8"\U0001F34E", // Apple
+  "Amarillo",
+  //"Banana", // u8"\U0001F34C", // Banana
+  "Cafe",
+ // "Orange" // u8"\U0001F34A"  // Orange
+  "Verde",
 };
 
 #define NUM_CLASSES (sizeof(CLASSES) / sizeof(CLASSES[0]))
@@ -66,6 +70,11 @@ void setup() {
 
   if (!APDS.begin()) {
     Serial.println("Error initializing APDS9960 sensor.");
+  }
+
+  if (!BARO.begin()) {
+    Serial.println("Failed to initialize pressure sensor!");
+    while (1);
   }
 
   // get the TFL representation of the model byte array
@@ -139,6 +148,21 @@ void loop() {
     //Lee el sensor de proximidad
     Serial.print(p);
     Serial.println();
+
+    //Lee sensor temperatura y presion atmosferica
+     float pressure = BARO.readPressure();
+
+  // print the sensor value
+  Serial.print("Pressure = ");
+  Serial.print(pressure);
+  Serial.println(" kPa");
+
+  float temperature = BARO.readTemperature();
+
+  // print the sensor value
+  Serial.print("Temperature = ");
+  Serial.print(temperature);
+  Serial.println(" C");
 
     // Wait for the object to be moved away
     while (!APDS.proximityAvailable() || (APDS.readProximity() == 0)) {}
