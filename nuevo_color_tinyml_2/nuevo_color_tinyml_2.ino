@@ -52,6 +52,7 @@ const char* CLASSES[] = {
  // "Apple", // u8"\U0001F34E", // Apple
   "Amarillo",
   //"Banana", // u8"\U0001F34C", // Banana
+  //Banano, cambia a amarillo, cafe y verde
   "Cafe",
  // "Orange" // u8"\U0001F34A"  // Orange
   "Verde",
@@ -145,9 +146,6 @@ void loop() {
       Serial.print(int(tflOutputTensor->data.f[i] * 100));
       Serial.print("%\n");
     }
-    //Lee el sensor de proximidad
-    Serial.print(p);
-    Serial.println();
 
     //Lee sensor temperatura y presion atmosferica
      float pressure = BARO.readPressure();
@@ -163,6 +161,10 @@ void loop() {
   Serial.print("Temperature = ");
   Serial.print(temperature);
   Serial.println(" C");
+  Serial.print("\t");
+   Serial.print(temperature);
+   Serial.print("\t");
+    Serial.print(pressure);
 
     // Wait for the object to be moved away
     while (!APDS.proximityAvailable() || (APDS.readProximity() == 0)) {}

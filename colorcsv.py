@@ -11,7 +11,7 @@ ser = serial.Serial(port = puerto,baudrate=9600,parity=serial.PARITY_NONE,stopbi
 #ser = serial.Serial(port = '/dev/pts/3',baudrate=9600,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS) 
 current_directory = os.getcwd()
 
-csv_path = os.path.join(current_directory, "cafe.csv")
+csv_path = os.path.join(current_directory, "amarillo_palmera.csv")
 
 with open(csv_path, mode ='w') as csv_file:
   writer = csv.writer(csv_file)
