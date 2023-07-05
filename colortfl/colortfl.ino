@@ -1,13 +1,8 @@
 /*
-  Object color sampler
-  --------------------
-  Samples the color of objects and outputs CSV logfile to serial console
-
-  Hardware: Arduino Nano 33 BLE Sense board.
-
-  Usage: Place object of interest to the color sensor
-
-  This example code is in the public domain.
+ IE-0624 Laboratorio de Microcontroaldores
+ Proyecto 
+ Monitoreo automatizado de plantas
+ Script para obtener los datos r, g y b del sensor APDS9960
 */
 
 #include <Arduino_APDS9960.h>
