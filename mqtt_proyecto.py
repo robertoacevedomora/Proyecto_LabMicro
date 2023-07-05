@@ -26,7 +26,7 @@ while (1):
     ejes = ser.readline().strip().decode('utf-8')
     ejes = ejes.split('\t')
     print(len(ejes))
-    dict["Amarillo"] = ejes[0]
+    dict["Datos"] = ejes[0]
     hola = json.dumps(dict)
     client1.publish("v1/devices/me/telemetry",hola)
     print(hola)

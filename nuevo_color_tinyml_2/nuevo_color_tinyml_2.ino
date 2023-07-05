@@ -145,12 +145,14 @@ void loop() {
       Serial.print(" ");
       Serial.print(int(tflOutputTensor->data.f[i] * 100));
       Serial.print("%\n");
+      Serial.print("\t");
     }
 
     //Lee sensor temperatura y presion atmosferica
      float pressure = BARO.readPressure();
 
   // print the sensor value
+  Serial.print("\t");
   Serial.print("Pressure = ");
   Serial.print(pressure);
   Serial.println(" kPa");
@@ -158,13 +160,11 @@ void loop() {
   float temperature = BARO.readTemperature();
 
   // print the sensor value
+  Serial.print("\t");
   Serial.print("Temperature = ");
   Serial.print(temperature);
   Serial.println(" C");
-  Serial.print("\t");
-   Serial.print(temperature);
-   Serial.print("\t");
-    Serial.print(pressure);
+  
 
     // Wait for the object to be moved away
     while (!APDS.proximityAvailable() || (APDS.readProximity() == 0)) {}
